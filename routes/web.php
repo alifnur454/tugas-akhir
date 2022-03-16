@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use app\http\controller\DashboardController;
+use App\Http\Controller\DashboardController;
+use App\Http\Controllers\IntrinsikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,14 +16,25 @@ use app\http\controller\DashboardController;
 */
 
 
-Route::get('/main', function () {
+Route::get('/', function(){
     return view('appadmin.main');
 });
 
-Route::get('/test', function () {
+
+// Route::get('/', function () {
+//     return view('appadmin.main');
+// });
+
+Route::get('/p', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index']);
 
-Route::view('/produk','produk');
+
+Route::get('/main', [IntrinsikController::class,'main']);
+
+Route::get('/intrinsik/create', [IntrinsikController::class,'create']);
+Route::post('/intrinsik/create', [IntrinsikController::class,'create2']);
+Route::get('/intrinsik/{id}/store', [IntrinsikController::class,'store']);
+Route::post('/intrinsik/{id}/update', [IntrinsikController::class,'update']);
+Route::get('/intrinsik/{id}/delete', [IntrinsikController::class,'delete']);
